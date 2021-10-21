@@ -6,6 +6,7 @@ import { login } from './store/actions/loginAction';
 import ListComponent from './components/ListComponent';
 import LoginComponent from './components/LoginComponent';
 import LoadingComponent from './components/LoadingComponent';
+import NavbarComponent from './common/ui/components/NavbarComponent';
 
 function App() {
 	const dispatch = useDispatch();
@@ -27,7 +28,14 @@ function App() {
 	return (
 		<div className="App">
 			{isLoading && <LoadingComponent />}
-			{!user ? <LoginComponent /> : <ListComponent />}
+			{user ? (
+				<>
+					<NavbarComponent user={user} />
+					<ListComponent />
+				</>
+			) : (
+				<LoginComponent />
+			)}
 		</div>
 	);
 }
