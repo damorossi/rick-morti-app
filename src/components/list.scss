@@ -1,0 +1,24 @@
+@import './../common/ui/styling/colors';
+@import './../common/ui/styling/mixins';
+
+.characters {
+	&-container,
+	&-footer {
+		display: flex;
+		justify-content: center;
+		width: 100%;
+	}
+
+	&-items {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		padding: 0;
+		width: 948px;
+		&::after {
+			content: '';
+			flex: auto;
+		}
+	}
+}

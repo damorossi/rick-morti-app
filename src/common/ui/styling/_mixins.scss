@@ -1,0 +1,51 @@
+@import '_colors';
+// common elements
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;1,300&display=swap');
+@mixin widget-common-elements {
+	@include common-texts;
+	background-color: $bg-common-widget;
+	border-radius: 3px;
+	margin-top: 10px;
+}
+
+@mixin common-shadows() {
+	box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.1);
+}
+
+@mixin common-texts($color: $text-paragraph) {
+	color: $color;
+	font-family: inherit;
+	font-size: 13px;
+	font-weight: 400;
+}
+
+@mixin input-text($color: $text-common) {
+	font-family: 'Roboto', sans-serif;
+	font-size: 20px;
+	font-weight: 300;
+}
+
+@mixin common-button() {
+	background-color: $bg-button;
+	border: none;
+	color: $text-common;
+	margin-top: 11px;
+	padding-top: 10px;
+	padding-bottom: 11px;
+}
+
+@mixin transition($transitions) {
+	-moz-transition: $transitions;
+	-ms-transition: $transitions;
+	-o-transition: $transitions;
+	-webkit-transition: $transitions;
+	transition: $transitions;
+}
+
+@mixin transform($transforms) {
+	-moz-transform: $transforms;
+	-ms-transform: $transforms;
+	-o-transform: $transforms;
+	-webkit-transform: $transforms;
+	transform: $transforms;
+}

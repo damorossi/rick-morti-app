@@ -1,7 +1,7 @@
 import React from 'react';
-
+import './loading.scss';
 const LoadingComponent = () => {
-	return <div>Loading, please wait</div>;
+	return <div className="spinner"></div>;
 };
 
 export default LoadingComponent;

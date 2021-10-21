@@ -2,18 +2,20 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from './../store/actions/RickMortiActions_';
 import LoadingComponent from './LoadingComponent';
+import CharacterItemComponent from './CharacterItemComponent';
+import './list.scss';
 
 const ListComponent = () => {
 	const dispatch = useDispatch();
+	const { items } = useSelector((state) => {
+		return state.characters;
+	});
+
 	useEffect(() => {
 		if (!items || items.length === 0) {
 			dispatch(actions.startFetchs());
 		}
-	}, []);
-
-	const { items } = useSelector((state) => {
-		return state.characters;
-	});
+	}, [dispatch, items]);
 
 	const { isLoading } = useSelector((state) => {
 		return state.ui;
@@ -21,15 +23,25 @@ const ListComponent = () => {
 
 	return (
 		<>
-			{isLoading ? (
-				<LoadingComponent />
-			) : (
-				<ul>
-					{items.map((character) => {
-						return <li> {character.name} </li>;
-					})}
-				</ul>
-			)}
+			<section className="characters-container">
+				<div className="characters-items">
+					{isLoading ? (
+						<LoadingComponent />
+					) : (
+						items.map((character) => {
+							return (
+								<CharacterItemComponent
+									name={character.name}
+									status={character.status}
+									species={character.species}
+									image={character.image}
+									key={`${character.name}-${character.id}`}
+								/>
+							);
+						})
+					)}
+				</div>
+			</section>
 		</>
 	);
 };
