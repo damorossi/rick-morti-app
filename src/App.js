@@ -3,7 +3,9 @@ import './App.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { login } from './store/actions/loginAction';
+import ListComponent from './components/ListComponent';
 import LoginComponent from './components/LoginComponent';
+import LoadingComponent from './components/LoadingComponent';
 
 function App() {
 	const dispatch = useDispatch();
@@ -16,7 +18,7 @@ function App() {
 			setUser(logedUser);
 			dispatch(login(logedUser));
 		}
-	});
+	}, []);
 
 	const { isLoading } = useSelector((state) => {
 		return state.ui;
@@ -24,14 +26,8 @@ function App() {
 
 	return (
 		<div className="App">
-			<header className="App-header">
-				{isLoading && <h3> loading </h3>}
-				<img src={logo} className="App-logo" alt="logo" />
-				<p>
-					Edit <code>src/App.js</code> and save to reload.
-				</p>
-				{!user && <LoginComponent />}
-			</header>
+			{isLoading && <LoadingComponent />}
+			{!user ? <LoginComponent /> : <ListComponent />}
 		</div>
 	);
 }
