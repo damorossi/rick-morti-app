@@ -22,7 +22,7 @@ export async function login(user, password) {
 		});
 }
 
-export async function fetchApiData(currentPage = 1) {
+export async function fetchApiData({ currentPage } = '1') {
 	const page = `${apiEndpoint}?page=${currentPage}`;
 	return await fetch(`${page}`)
 		.then((response) => response.json())

@@ -33,7 +33,6 @@ const NavbarComponent = ({ user }) => {
 				</li>
 				<li className="navbar-linkContainer">
 					<button type="submit" className="navbar-logout" onClick="logout()">
-						{' '}
 						<i className="logout fa fa-power-off" aria-hidden="true"></i>
 					</button>
 				</li>
