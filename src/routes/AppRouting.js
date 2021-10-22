@@ -5,8 +5,8 @@ import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
 import { AuthRouter } from './AuthRouter';
 import { login } from '../store/actions/loginAction';
-import ListComponent from '../components/ListComponent';
 import LoadingComponent from '../components/LoadingComponent';
+import LayoutComponent from '../common/ui/components/LayoutComponent';
 
 export const AppRouter = () => {
 	const dispatch = useDispatch();
@@ -30,7 +30,6 @@ export const AppRouter = () => {
 	const logedUser = useSelector((state) => {
 		return state.auth;
 	});
-
 	return (
 		<Router>
 			<div>
@@ -38,7 +37,13 @@ export const AppRouter = () => {
 				<Switch>
 					<PublicRoute path="/auth" isAuthenticated={logedUser?.uid !== '' || isLogedIn} component={AuthRouter} />
 
-					<PrivateRoute exact path="/" isAuthenticated={logedUser?.uid !== '' || isLogedIn} component={ListComponent} />
+					<PrivateRoute
+						exact
+						path="/"
+						isAuthenticated={logedUser?.uid !== '' || isLogedIn}
+						user={logedUser}
+						component={LayoutComponent}
+					/>
 
 					<Redirect to="/auth/login" />
 				</Switch>

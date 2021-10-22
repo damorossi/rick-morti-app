@@ -18,7 +18,7 @@ const NavbarComponent = ({ user }) => {
 	return (
 		<nav className="navbar">
 			<div className="navbar-logo">
-				<img src="http://api.damianrossi.com/dist/img/logo.png" />
+				<img src="http://api.damianrossi.com/dist/img/logo.png" alt="Created by Damian Rossi" />
 			</div>
 			<ul className="navbar-navigation">
 				{sections.map((section) => (
@@ -29,10 +29,10 @@ const NavbarComponent = ({ user }) => {
 			</ul>
 			<ul className="navbar-navigation">
 				<li className="navbar-linkContainer">
-					<span>Welcome, {user.displayName}</span>
+					<span>Welcome, {user?.name}</span>
 				</li>
 				<li className="navbar-linkContainer">
-					<button type="submit" className="navbar-logout" onClick="logout()">
+					<button type="submit" className="navbar-logout" onClick={logout()}>
 						<i className="logout fa fa-power-off" aria-hidden="true"></i>
 					</button>
 				</li>
