@@ -17,7 +17,7 @@ export const AppRouter = () => {
 		const loggedUserJSON = window.localStorage.getItem('loggedUser');
 		if (loggedUserJSON) {
 			const logedUser = JSON.parse(loggedUserJSON);
-			if (logedUser?.uid) {
+			if (logedUser?._id) {
 				dispatch(login(logedUser));
 				setIsLogedIn(true);
 			}
@@ -35,12 +35,12 @@ export const AppRouter = () => {
 			<div>
 				{isLoading && <LoadingComponent />}
 				<Switch>
-					<PublicRoute path="/auth" isAuthenticated={logedUser?.uid !== '' || isLogedIn} component={AuthRouter} />
+					<PublicRoute path="/auth" isAuthenticated={logedUser?._id !== '' || isLogedIn} component={AuthRouter} />
 
 					<PrivateRoute
 						exact
 						path="/"
-						isAuthenticated={logedUser?.uid !== '' || isLogedIn}
+						isAuthenticated={logedUser?._id !== '' || isLogedIn}
 						user={logedUser}
 						component={LayoutComponent}
 					/>

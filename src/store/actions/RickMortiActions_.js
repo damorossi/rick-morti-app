@@ -3,11 +3,12 @@ import types from '../types';
 
 import { uiStartLoading, uiFinishLoading } from './uiActions';
 
-export const startFetchs = () => {
+export const startFetchs = (pageNumber) => {
+	console.log(pageNumber);
 	return (dispatch) => {
 		dispatch(uiStartLoading());
 		services
-			.fetchApiData()
+			.fetchApiData(pageNumber)
 			.then((data) => {
 				dispatch(loadCharacters(data));
 				dispatch(uiFinishLoading());
@@ -27,7 +28,8 @@ export const loadCharacters = ({ results, info }) => {
 			items: results,
 			info: {
 				next: info.next,
-				prev: info.prev
+				prev: info.prev,
+				pages: info.pages
 			}
 		}
 	};

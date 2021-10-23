@@ -4,6 +4,7 @@ const initialState = {
 	isLoading: false,
 	items: [],
 	paginInfo: {
+		pages: null,
 		next: null,
 		prev: null
 	}
