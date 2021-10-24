@@ -55,6 +55,16 @@ export const setFavorite = (favorite, uid) => {
 	};
 };
 
+export const unsetFavorite = (_id) => {
+	return (dispatch) => {
+		setTimeout(() => {
+			services.deleteFavorite(_id).then((items) => {
+				return dispatch(setData(items));
+			});
+		});
+	};
+};
+
 export const setData = (favorites) => {
 	return {
 		type: types.setFavorite,

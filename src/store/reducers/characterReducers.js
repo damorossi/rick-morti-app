@@ -28,7 +28,7 @@ export const characterReducers = (state = initialState, action) => {
 		case types.unsetFavorite:
 			return {
 				...state,
-				favorites: action.payload.favorites
+				favorites: action.payload
 			};
 		default:
 			return state;

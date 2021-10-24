@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFavorite } from '../store/actions/RickMortiActions_';
+import * as actions from '../store/actions/RickMortiActions_';
 import './character.scss';
 
 const CharacterItemComponent = ({ character, isSelected }) => {
@@ -10,9 +10,20 @@ const CharacterItemComponent = ({ character, isSelected }) => {
 		return state.auth._id;
 	});
 
+	const itemDbId = useSelector((state) => {
+		if (isSelected) {
+			return state.characters.favorites.find((x) => x.id === character.id)._id;
+		}
+		return null;
+	});
+
 	const onHandleSwitch = () => {
 		isSelected = !isSelected;
-		dispatch(setFavorite(character, user_id));
+		if (!isSelected) {
+			dispatch(actions.unsetFavorite(itemDbId));
+		} else {
+			dispatch(actions.setFavorite(character, user_id));
+		}
 	};
 
 	return (

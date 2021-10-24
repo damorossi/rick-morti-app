@@ -1,7 +1,10 @@
 const baseUrl = 'http://localhost:4000/api/';
 
 const apiEndpoint = 'http://localhost:4000/api/';
-const { token } = JSON.parse(window.localStorage.getItem('loggedUser'));
+let token;
+if (window.localStorage.getItem('loggedUser')) {
+	token = JSON.parse(window.localStorage.getItem('loggedUser')).token;
+}
 
 export async function login(email, password) {
 	const data = {
@@ -24,7 +27,8 @@ export async function login(email, password) {
 }
 
 export async function fetchApiData(pageNumber = '1') {
-	if (!token) {
+	token = JSON.parse(window.localStorage.getItem('loggedUser')).token;
+	if (!token || token === undefined) {
 		return;
 	}
 	const requestOptions = {
@@ -34,7 +38,13 @@ export async function fetchApiData(pageNumber = '1') {
 	};
 	const page = `${apiEndpoint}chars/fetch/${pageNumber}`;
 	return await fetch(`${page}`, requestOptions)
-		.then((response) => response.json())
+		.then((response) => {
+			if (response.status.toString() === '403') {
+				window.localStorage.removeItem('loggedUser');
+				window.location.replace('/login');
+			}
+			return response.json();
+		})
 		.catch((e) => {
 			console.error(e);
 		});
@@ -54,6 +64,7 @@ export async function saveFavorite(item) {
 		.catch((e) => {
 			console.error(e);
 		});
+
 	return data;
 }
 
@@ -72,6 +83,24 @@ export async function getFavorites(userId) {
 		.catch((e) => {
 			console.error(e);
 		});
+}
+
+export async function deleteFavorite(id) {
+	const requestOptions = {
+		method: 'DELETE',
+		headers: { 'Content-Type': 'application/json', Accept: '*/*' },
+		Authorization: `Bearer ${token}`
+	};
+
+	const postPage = `${apiEndpoint}chars/delete/${id}`;
+	const data = await fetch(`${postPage}`, requestOptions)
+		.then((response) => {
+			return response.json();
+		})
+		.catch((e) => {
+			console.error(e);
+		});
+	return data;
 }
 
 export const saveUserData = (user) => {

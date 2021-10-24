@@ -59,8 +59,6 @@ export const AppRouter = () => {
 						user={logedUser}
 						component={FavoriteListComponent}
 					></PrivateRoute>
-
-					<PublicRoute component={LoginComponent} />
 					<Redirect to="/auth/login" />
 				</Switch>
 			</div>
