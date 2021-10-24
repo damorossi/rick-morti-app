@@ -29,15 +29,7 @@ const ListComponent = () => {
 						<LoadingComponent />
 					) : (
 						items.map((character) => {
-							return (
-								<CharacterItemComponent
-									name={character.name}
-									status={character.status}
-									species={character.species}
-									image={character.image}
-									key={`${character.name}-${character.id}`}
-								/>
-							);
+							return <CharacterItemComponent character={character} key={`${character.name}-${character.id}`} />;
 						})
 					)}
 				</div>

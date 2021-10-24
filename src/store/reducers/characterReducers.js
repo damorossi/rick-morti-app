@@ -3,6 +3,7 @@ import types from '../types';
 const initialState = {
 	isLoading: false,
 	items: [],
+	favorites: [],
 	paginInfo: {
 		pages: null,
 		next: null,
@@ -10,7 +11,7 @@ const initialState = {
 	}
 };
 
-export const _RickmortiReducers = (state = initialState, action) => {
+export const characterReducers = (state = initialState, action) => {
 	switch (action.type) {
 		case types.loadCharacters:
 			return {
@@ -18,6 +19,16 @@ export const _RickmortiReducers = (state = initialState, action) => {
 				isLoading: action.payload.isLoading,
 				items: action.payload.items,
 				paginInfo: action.payload.info
+			};
+		case types.setFavorite:
+			return {
+				...state,
+				favorites: action.payload
+			};
+		case types.unsetFavorite:
+			return {
+				...state,
+				favorites: action.payload.favorites
 			};
 		default:
 			return state;

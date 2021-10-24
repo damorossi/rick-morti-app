@@ -2,7 +2,7 @@
 const baseUrl = 'http://localhost:4000/api/';
 
 // const apiEndpoint = 'https://rickandmortyapi.com/api/character/';
-const apiEndpoint = 'http://localhost:4000/api/chars/fetch';
+const apiEndpoint = 'http://localhost:4000/api/';
 
 // FIXME: This is mocked data to succeed on reqres api (mocked data, real response)
 export async function login(email, password) {
@@ -30,15 +30,30 @@ export async function fetchApiData(pageNumber = '1') {
 		method: 'GET',
 		headers: { 'Content-Type': 'application/json', Accept: '*/*' }
 	};
-	console.log('page', pageNumber);
-	// const page = `${apiEndpoint}?page=${pageNumber}`;
-	const page = `${apiEndpoint}/${pageNumber}`;
-	debugger;
+	const page = `${apiEndpoint}chars/fetch/${pageNumber}`;
 	return await fetch(`${page}`, requestOptions)
 		.then((response) => response.json())
 		.catch((e) => {
 			console.error(e);
 		});
+}
+
+export async function saveFavorite(item) {
+	const { token } = JSON.parse(window.localStorage.getItem('loggedUser'));
+	const requestOptions = {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json', Accept: '*/*' },
+		Authorization: `Bearer ${token}`,
+		body: JSON.stringify(item)
+	};
+
+	const postPage = `${apiEndpoint}chars/create/`;
+	const data = await fetch(`${postPage}`, requestOptions)
+		.then((response) => response.json())
+		.catch((e) => {
+			console.error(e);
+		});
+	return data;
 }
 
 export const saveUserData = (user) => {

@@ -1,6 +1,7 @@
 @import '_colors';
 // common elements
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;1,300&display=swap');
+
 @mixin widget-common-elements {
 	@include common-texts;
 	background-color: $bg-common-widget;
@@ -48,4 +49,48 @@
 	-o-transform: $transforms;
 	-webkit-transform: $transforms;
 	transform: $transforms;
+}
+
+@mixin toggle-switch {
+	display: inline-block;
+	height: 20px;
+	position: relative;
+	width: 30px;
+	&.active {
+		.switch-slider {
+			background-color: $bg-toggle-on;
+			&::before {
+				@include transform(translateX(10px));
+			}
+		}
+	}
+}
+
+.switch-slider {
+	@include transition(all 0.2s ease-out);
+	background-color: $bg-toggle-off;
+	border-radius: 20px;
+	bottom: 0;
+	cursor: pointer;
+	height: 20px;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 30px;
+	&::before {
+		@include transition(all 0.2s ease-out);
+		background-color: $bg-common-widget;
+		border-radius: 50%;
+		bottom: 2px;
+		content: '';
+		height: 16px;
+		left: 2px;
+		position: absolute;
+		width: 16px;
+	}
+}
+
+@mixin slider() {
+	@extend .switch-slider;
 }

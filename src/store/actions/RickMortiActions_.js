@@ -4,7 +4,6 @@ import types from '../types';
 import { uiStartLoading, uiFinishLoading } from './uiActions';
 
 export const startFetchs = (pageNumber) => {
-	console.log(pageNumber);
 	return (dispatch) => {
 		dispatch(uiStartLoading());
 		services
@@ -32,5 +31,23 @@ export const loadCharacters = ({ results, info }) => {
 				pages: info.pages
 			}
 		}
+	};
+};
+
+export const setFavorite = (favorite, uid) => {
+	return (dispatch) => {
+		const itemToSend = { ...favorite, user_id: uid };
+		setTimeout(() => {
+			services.saveFavorite(itemToSend).then((items) => {
+				return dispatch(setData(items));
+			});
+		});
+	};
+};
+
+export const setData = (favorites) => {
+	return {
+		type: types.setFavorite,
+		payload: favorites
 	};
 };
