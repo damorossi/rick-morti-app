@@ -7,6 +7,8 @@ import { AuthRouter } from './AuthRouter';
 import { login } from '../store/actions/loginAction';
 import LoadingComponent from '../components/LoadingComponent';
 import LayoutComponent from '../common/ui/components/LayoutComponent';
+import FavoriteListComponent from '../components/FavoriteListComponent';
+import LoginComponent from '../components/LoginComponent';
 
 export const AppRouter = () => {
 	const dispatch = useDispatch();
@@ -36,15 +38,29 @@ export const AppRouter = () => {
 				{isLoading && <LoadingComponent />}
 				<Switch>
 					<PublicRoute path="/auth" isAuthenticated={logedUser?._id !== '' || isLogedIn} component={AuthRouter} />
-
 					<PrivateRoute
 						exact
 						path="/"
 						isAuthenticated={logedUser?._id !== '' || isLogedIn}
 						user={logedUser}
 						component={LayoutComponent}
-					/>
+					></PrivateRoute>
+					<PrivateRoute
+						exact
+						path="/characters"
+						isAuthenticated={logedUser?._id !== '' || isLogedIn}
+						user={logedUser}
+						component={LayoutComponent}
+					></PrivateRoute>
+					<PrivateRoute
+						exact
+						path="/favorites"
+						isAuthenticated={logedUser?._id !== '' || isLogedIn}
+						user={logedUser}
+						component={FavoriteListComponent}
+					></PrivateRoute>
 
+					<PublicRoute component={LoginComponent} />
 					<Redirect to="/auth/login" />
 				</Switch>
 			</div>

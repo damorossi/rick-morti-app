@@ -34,6 +34,16 @@ export const loadCharacters = ({ results, info }) => {
 	};
 };
 
+export const retrieveFavorites = (user_id) => {
+	return (dispatch) => {
+		setTimeout(() => {
+			services.getFavorites(user_id).then((items) => {
+				return dispatch(setData(items));
+			});
+		});
+	};
+};
+
 export const setFavorite = (favorite, uid) => {
 	return (dispatch) => {
 		const itemToSend = { ...favorite, user_id: uid };

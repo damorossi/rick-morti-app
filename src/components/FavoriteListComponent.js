@@ -1,20 +1,18 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import * as actions from './../store/actions/RickMortiActions_';
+import * as actions from '../store/actions/RickMortiActions_';
 import LoadingComponent from './LoadingComponent';
 import CharacterItemComponent from './CharacterItemComponent';
-import PaginatorComponent from '../common/ui/components/PaginatorComponent';
 import './list.scss';
 
-const ListComponent = ({ user }) => {
+const FavoriteListComponent = ({ user }) => {
 	const dispatch = useDispatch();
-	const { items, favorites } = useSelector((state) => {
-		return state.characters;
+	const items = useSelector((state) => {
+		return state.characters.favorites;
 	});
 
 	useEffect(() => {
 		if (!items || items.length === 0) {
-			dispatch(actions.startFetchs());
 			dispatch(actions.retrieveFavorites(user._id));
 		}
 	}, [dispatch, items]);
@@ -33,7 +31,7 @@ const ListComponent = ({ user }) => {
 						items.map((character) => {
 							return (
 								<CharacterItemComponent
-									isSelected={favorites.some((x) => x.id === character.id)}
+									isSelected={true}
 									character={character}
 									key={`${character.name}-${character.id}`}
 								/>
@@ -42,9 +40,8 @@ const ListComponent = ({ user }) => {
 					)}
 				</div>
 			</section>
-			<PaginatorComponent />
 		</>
 	);
 };
 
-export default ListComponent;
+export default FavoriteListComponent;

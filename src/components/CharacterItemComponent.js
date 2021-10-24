@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setFavorite } from '../store/actions/RickMortiActions_';
 import './character.scss';
 
-const CharacterItemComponent = ({ character }, { isSelected }) => {
+const CharacterItemComponent = ({ character, isSelected }) => {
 	const { name, status, species, image } = character;
 	const dispatch = useDispatch();
 	const user_id = useSelector((state) => {

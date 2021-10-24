@@ -33,6 +33,7 @@
 	}
 	&-link {
 		color: $text-common;
+		text-decoration: none;
 		&.active {
 			font-weight: 900;
 		}

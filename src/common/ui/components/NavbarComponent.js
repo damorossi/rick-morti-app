@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import './navbar.scss';
 
 const NavbarComponent = ({ user }) => {
@@ -8,11 +9,11 @@ const NavbarComponent = ({ user }) => {
 	const sections = [
 		{
 			sectionName: 'Characters',
-			link: 'dashboard'
+			link: '/characters'
 		},
 		{
 			sectionName: 'Favs',
-			link: 'favorites'
+			link: '/favorites'
 		}
 	];
 	return (
@@ -23,7 +24,9 @@ const NavbarComponent = ({ user }) => {
 			<ul className="navbar-navigation">
 				{sections.map((section) => (
 					<li className="navbar-linkContainer" key={section.sectionName}>
-						<a className="navbar-link">{section.sectionName}</a>
+						<NavLink to={section.link} className="navbar-link" activeClassName="active">
+							{section.sectionName}
+						</NavLink>
 					</li>
 				))}
 			</ul>

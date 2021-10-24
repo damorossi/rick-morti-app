@@ -7,9 +7,7 @@ import './layout.scss';
 const LayoutComponent = (props) => {
 	return (
 		<div className="main">
-			<NavbarComponent user={props.user} />
-			<ListComponent />
-			<PaginatorComponent />
+			<ListComponent user={props.user} />
 		</div>
 	);
 };

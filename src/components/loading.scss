@@ -9,6 +9,14 @@
 	width: 120px;
 	height: 120px;
 	animation: spin 2s linear infinite;
+
+	&-container {
+		align-items: center;
+		display: flex;
+		justify-content: center;
+		min-height: 100%;
+		width: 100%;
+	}
 }
 @keyframes spin {
 	0% {
