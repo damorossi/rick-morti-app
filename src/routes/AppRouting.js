@@ -8,7 +8,6 @@ import { login } from '../store/actions/loginAction';
 import LoadingComponent from '../components/LoadingComponent';
 import LayoutComponent from '../common/ui/components/LayoutComponent';
 import FavoriteListComponent from '../components/FavoriteListComponent';
-import LoginComponent from '../components/LoginComponent';
 
 export const AppRouter = () => {
 	const dispatch = useDispatch();
