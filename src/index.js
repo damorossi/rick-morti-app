@@ -11,7 +11,6 @@ import { AppRouter } from './routes/AppRouting';
 ReactDOM.render(
 	<React.StrictMode>
 		<Provider store={configureStore()}>
-			{/* <App /> */}
 			<AppRouter />
 		</Provider>
 	</React.StrictMode>,
