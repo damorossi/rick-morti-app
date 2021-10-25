@@ -1,9 +1,16 @@
-# FRONTEND APP OF RICK AND MORTI
+# FULL STACK APP OF RICK AND MORTI
 
 Thank you for reading this code,
 this is an app required to fetch an application that will fetch information from the rick and morti api.
 
 # HOW
+
+both folders: Fe and BE: in separated terminals
+RUN FOR FRONTEND: yarn start or npm run start.
+RUN FOR BACKEND: npm run dev.
+
+frontend server will be runing on port 3000 and backend on port 4000.
+config for db are already set up.
 
 Login with hohner.blues@gmail.com user and password: clave123.
 you will be able to set favorite users or unset them.
