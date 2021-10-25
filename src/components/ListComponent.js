@@ -17,7 +17,7 @@ const ListComponent = ({ user }) => {
 			dispatch(actions.startFetchs());
 			dispatch(actions.retrieveFavorites(user._id));
 		}
-	}, [dispatch, items]);
+	}, [dispatch, items, user]);
 
 	const { isLoading } = useSelector((state) => {
 		return state.ui;

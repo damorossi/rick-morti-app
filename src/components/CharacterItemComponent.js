@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../store/actions/RickMortiActions_';
 import './character.scss';
+import CharacterDetailComponent from './CharacterDetailComponent';
 
 const CharacterItemComponent = ({ character, isSelected }) => {
 	const { name, status, species, image } = character;
 	const dispatch = useDispatch();
+	const [displayDetail, setDisplayDetail] = useState(false);
 	const user_id = useSelector((state) => {
 		return state.auth._id;
 	});
@@ -16,6 +18,10 @@ const CharacterItemComponent = ({ character, isSelected }) => {
 		}
 		return null;
 	});
+
+	const handleDisplayDetail = () => {
+		setDisplayDetail(!displayDetail);
+	};
 
 	const onHandleSwitch = () => {
 		isSelected = !isSelected;
@@ -42,9 +48,18 @@ const CharacterItemComponent = ({ character, isSelected }) => {
 					Species: <strong> {species} </strong>
 				</p>
 			</div>
-			<span className={`switch-container ${isSelected && 'active'}`} onClick={onHandleSwitch}>
+			<span
+				data-testid="switcher"
+				className={`switch-container ${isSelected && 'active'}`}
+				onClick={onHandleSwitch}
+				title="toggle-favourite"
+			>
 				<span className="switch-slider"></span>
 			</span>
+			<button className="character-seeDetails" onClick={handleDisplayDetail}>
+				See more
+			</button>
+			{displayDetail && <CharacterDetailComponent character={character} handleClose={handleDisplayDetail} />}
 		</div>
 	);
 };

@@ -1,0 +1,87 @@
+@import './../common/ui/styling/colors';
+@import './../common/ui/styling/mixins';
+
+.detail {
+	&-itemContainer {
+		align-items: center;
+		display: flex;
+		height: 100%;
+		justify-content: center;
+		left: 0px;
+		min-width: 100%;
+		position: absolute;
+		top: 0px;
+		z-index: 23;
+
+		&:before {
+			background-color: $bg-full-dark;
+			content: '';
+			display: block;
+			height: 100%;
+			left: 0;
+			opacity: 0.6;
+			position: relative;
+			top: 0;
+			width: 100vw;
+			z-index: 2;
+		}
+	}
+	&-buttonClose {
+		position: absolute;
+		top: -10px;
+		right: -16px;
+		border-radius: 50%;
+		width: 30px;
+		height: 30px;
+	}
+	&-name {
+		@include transition(border-radius 0.31s);
+		align-self: center;
+		flex-grow: 1;
+		font-weight: bold;
+		font-size: 22px;
+		margin-left: 10px;
+	}
+	&-itemHeader {
+		display: flex;
+		justify-content: space-between;
+	}
+	&-picture {
+		border-radius: 0%;
+		@include transition(border-radius 0.11s);
+		&:hover {
+			@include transition(border-radius 0.31s);
+			border-radius: 50%;
+		}
+	}
+
+	&-itemMainContent {
+		@include widget-common-elements;
+		border: solid;
+		border-radius: 5px;
+		left: -50%;
+		position: relative;
+		width: 500px;
+		z-index: 5;
+	}
+
+	&-itemMainContent {
+		padding: 16px;
+		.item-info {
+			font-size: 16px;
+			line-height: 2;
+		}
+		.item-detail {
+			font-weight: bold;
+		}
+	}
+}
+
+@media only screen and (max-width: 664px) {
+	.detail {
+		&-itemMainContent {
+			width: 400px;
+			max-width: 100%;
+		}
+	}
+}
