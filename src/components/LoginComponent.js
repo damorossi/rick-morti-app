@@ -60,9 +60,9 @@ const LoginComponent = () => {
 							Login
 						</button>
 						{/* TODO:; Create register */}
-						<Link to="/auth/register" className="link">
+						{/* <Link to="/auth/register" className="link">
 							Create new account
-						</Link>
+						</Link> */}
 					</form>
 				</div>
 			</div>
